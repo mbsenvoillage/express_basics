@@ -12,6 +12,24 @@ function insert(member) {
     })
 }
 
+function update(member, index) {
+    return new Promise((resolve, reject) => {
+        members[index] = member;
+        writeDataToFile(path.join(__dirname, '../data.json'), members);
+        resolve(member);
+    })
+}
+
+function remove(id) {
+    return new Promise((resolve, reject) => {
+        let newList = members.filter(m=>m.id !== +id);
+        writeDataToFile(path.join(__dirname, '../data.json'), newList);
+        resolve({message: "Member has been deleted"});
+    })
+}
+
 module.exports = {
-    insert
+    insert,
+    update,
+    remove
 }

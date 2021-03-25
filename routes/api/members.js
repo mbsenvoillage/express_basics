@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let members = require('../../data.json');
-const { addMember } = require('../../controller/memberController');
+const { addMember, updateMember, deleteMember } = require('../../controller/memberController');
 
 
 // Get all members
@@ -18,6 +18,16 @@ router.get('/:id', (req, res) => {
 // Create member
 router.post('/', (req, res) => {
     addMember(req, res);
+})
+
+// Update Member
+router.put('/:id', (req, res) => {
+    updateMember(req, res);
+})
+
+// Get single member
+router.delete('/:id', (req, res) => {
+    deleteMember(req, res);
 })
 
 module.exports = router;
